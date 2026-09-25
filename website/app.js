@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	    if (query === null || !query.trim()) {
 		return;
-	    )
+	    }
 
             openTransactionSearch.click();
         });
