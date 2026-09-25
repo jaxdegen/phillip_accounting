@@ -1,5 +1,11 @@
-import tkinter as tk
-from tkinter import messagebox
+try:
+    import tkinter as tk
+except ImportError:
+    tk = None
+try:
+    from tkinter import messagebox
+except ImportError:
+    messagebox = None
 from openpyxl import Workbook, load_workbook
 from openpyxl.chart import PieChart, LineChart, Reference
 import os
