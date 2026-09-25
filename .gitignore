@@ -1,0 +1,6 @@
+dist/
+Base Package/
+*.zip
+__pycache__/
+*.pyc
+*.log

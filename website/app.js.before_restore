@@ -1,0 +1,175 @@
+const response =
+    document.getElementById("response");
+
+const templateSelect =
+    document.getElementById("templateSelect");
+
+const dataInput =
+    document.getElementById("dataInput");
+
+const enterData =
+    document.getElementById("enterData");
+
+const spreadsheetSearch =
+    document.getElementById("spreadsheetSearch");
+
+const spreadsheetList =
+    document.getElementById("spreadsheetList");
+
+const helpButton =
+    document.getElementById("helpButton");
+
+const openTransactionSearch =
+    document.getElementById("openTransactionSearch");
+
+const transactionList =
+    document.getElementById("transactionList");
+
+const transactionCount =
+    document.getElementById("transactionCount");
+
+
+function loadSpreadsheets(search = "") {
+    fetch(
+        `/api/spreadsheets?search=${encodeURIComponent(search)}`
+    )
+        .then(result => result.json())
+        .then(data => {
+            spreadsheetList.innerHTML = "";
+
+            data.spreadsheets.forEach(filename => {
+                const item =
+                    document.createElement("li");
+
+                item.textContent = filename		item.addEventListener("click", function() {
+    			window.currentSpreadsheet = filename;
+
+   			 response.textContent =
+       		 		`Current spreadsheet: ${filename}`;
+
+   			 transactionCount.textContent =
+       				 "Spreadsheet selected.";
+
+   			 document.querySelectorAll("#spreadsheetList li")
+       				 .forEach(li => {
+           				 li.classList.remove("selected");
+       				 });
+
+   			 item.classList.add("selected");
+		});	
+
+                            response.textContent =
+                                `Current spreadsheet: ${info.filename} | ` +
+                                `Last Updated: ${info.last_updated} | ` +
+                                `Transactions: ${info.transactions}`;
+
+                            window.currentSpreadsheet =
+                                filename;
+
+                            transactionCount.textContent =
+                                `${info.transactions} transactions`;
+                        });
+                });
+
+                spreadsheetList.appendChild(item);
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+
+loadSpreadsheets();
+
+
+spreadsheetSearch.addEventListener("input", function() {
+    loadSpreadsheets(
+        spreadsheetSearch.value
+    );
+});
+
+
+fetch("/api/templates")
+    .then(result => result.json())
+    .then(data => {
+        templateSelect.innerHTML = "";
+
+        data.templates.forEach(template => {
+            const option =
+                document.createElement("option");
+
+            option.value = template;
+            option.textContent = template;
+
+            templateSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+
+enterData.addEventListener("click", function() {
+    const text =
+        dataInput.value.trim();
+
+    const template =
+        templateSelect.value;
+
+    if (!text) {
+        response.textContent =
+            "Please enter some information.";
+
+        return;
+    }
+
+    fetch("/api/transaction", {
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            text: text,
+            template: template
+        })
+    })
+        .then(result => result.json())
+        .then(data => {
+            if (data.error) {
+                response.textContent =
+                    data.error;
+
+                return;
+            }
+
+            response.textContent =
+                "Transaction received by Phillip.";
+
+            dataInput.value = "";
+
+            dataInput.focus();
+
+            loadSpreadsheets();
+        })
+        .catch(error => {
+            console.error(error);
+
+            response.textContent =
+                "Could not connect to Phillip.";
+        });
+});
+
+
+helpButton.addEventListener("click", function() {
+    response.textContent =
+        "Phillip Accounting Help";
+});
+
+
+openTransactionSearch.addEventListener("click", function() {
+    response.textContent =
+        "Transaction search will be connected next.";
+});

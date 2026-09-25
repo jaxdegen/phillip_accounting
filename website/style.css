@@ -1,0 +1,306 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    background-color: #343534;
+    color: white;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+.app {
+    width: 100%;
+    max-width: 1180px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 55px 70px 35px;
+    position: relative;
+}
+
+header h1 {
+    margin: 15px 0 20px;
+    font-size: 58px;
+    font-weight: bold;
+}
+
+header p {
+    margin: 0 0 75px;
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 34px;
+    margin: 0 0 35px;
+}
+
+label {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+#helpButton {
+    position: absolute;
+    top: 18px;
+    right: 25px;
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: #168fe3;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#searchTransactionsButton {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    background-color: #777;
+    color: white;
+    font-family: "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#templateSelect {
+    width: 460px;
+    max-width: 100%;
+    height: 50px;
+    padding: 5px 12px;
+    margin-bottom: 28px;
+    border: 3px solid #999;
+    border-radius: 8px;
+    background-color: #f8f6f0;
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 23px;
+}
+
+.data-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.data-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+input {
+    height: 54px;
+    padding: 10px 14px;
+    border: 3px solid #999;
+    border-radius: 8px;
+    background-color: #f8f6f0;
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 22px;
+}
+
+#dataInput {
+    width: 100%;
+}
+
+button {
+    font-family: "Times New Roman", serif;
+    cursor: pointer;
+}
+
+#clearData,
+#clearSpreadsheetSearch,
+#clearNewSpreadsheet {
+    flex: 0 0 auto;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#enterData {
+    padding: 13px 38px;
+    border: none;
+    border-radius: 28px;
+    background-color: #ffd400;
+    color: black;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+#response {
+    width: 100%;
+    min-height: 60px;
+    margin: 25px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f8f6f0;
+    color: black;
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+    text-align: left;
+}
+
+.accounting-section,
+.spreadsheet-section,
+.transaction-section {
+    width: 100%;
+    margin-bottom: 55px;
+}
+
+#spreadsheetSearch,
+#newSpreadsheetName {
+    width: 100%;
+}
+
+#spreadsheetList {
+    width: 72%;
+    min-height: 80px;
+    margin: 0 auto 12px;
+    padding: 8px;
+    border: 2px solid black;
+    background-color: #409bd4;
+    color: black;
+    list-style: none;
+    text-align: left;
+    font-family: "Courier New", monospace;
+    font-size: 23px;
+}
+
+#spreadsheetList li {
+    padding: 4px;
+    cursor: pointer;
+}
+
+#spreadsheetList li.selected {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#selectSpreadsheet {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 28px;
+    background-color: white;
+    color: black;
+    font-size: 23px;
+}
+
+#deleteSpreadsheet {
+    display: block;
+    margin: 12px auto 30px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 28px;
+    background-color: #d71919;
+    color: white;
+    font-size: 23px;
+}
+
+#currentSpreadsheet {
+    margin: 25px 0;
+    font-size: 27px;
+}
+
+#createSpreadsheet {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 28px;
+    background-color: white;
+    color: black;
+    font-size: 23px;
+}
+
+#openTransactionSearch {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 28px;
+    background-color: #168fe3;
+    color: white;
+    font-size: 23px;
+}
+
+#transactionCount {
+    font-size: 22px;
+}
+
+#transactionList {
+    width: 75%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f8f6f0;
+    color: black;
+    list-style: none;
+    text-align: left;
+}
+
+#transactionList li {
+    margin-bottom: 8px;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+}
+
+footer {
+    margin-top: 45px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+footer p {
+    margin: 8px;
+}
+
+@media (max-width: 750px) {
+    .app {
+        padding: 75px 20px 30px;
+    }
+
+    header h1 {
+        font-size: 42px;
+    }
+
+    header p {
+        font-size: 24px;
+        margin-bottom: 55px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .data-row {
+        flex-direction: column;
+    }
+
+    .data-row input {
+        width: 100%;
+    }
+
+    #spreadsheetList,
+    #transactionList {
+        width: 100%;
+    }
+
+    #searchTransactionsButton {
+        font-size: 18px;
+    }
+}
