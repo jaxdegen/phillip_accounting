@@ -2808,330 +2808,331 @@ def delete_spreadsheet():
 # WINDOW
 # -------------------------
 
-window = tk.Tk()
-
-window.title("Phillip Accounting")
-window.geometry("610x687")
-window.configure(bg="#343534")
-window.resizable(False,False)
-window.pack_propagate(False)
-window.grid_propagate(False)
-
-search_button = rounded_button(
-    window,
-    text="Search Transactions",
-    font=("Times New Roman", 11),
-    bg="#656764",
-    fg="white",
-    command=open_search_window,
-    height=25,
-    width=140,
-    corner_radius=12
-)
-
-search_button.place(relx=0.24, rely=0.01, anchor="ne")
-
-help_button = tk.Canvas(
-    window,
-    width=32,
-    height=32,
-    bg="#343534",
-    highlightthickness=0
-)
-
-help_button.place(relx=0.98, rely=0.01, anchor="ne")
-
-help_button.create_oval(
-    2,
-    2,
-    30,
-    30,
-    fill="#0066CC",
-    outline="#87CEEB",
-    width=2
-)
-
-help_button.create_text(
-    16,
-    16,
-    text="?",
-    font=("Times New Roman", 17),
-    fill="white"
-)
-
-help_button.bind(
-    "<Button-1>",
-    lambda event: show_help()
-)
-
-title = tk.Label(
-    window,
-    text="PHILLIP ACCOUNTING",
-    font=("Times New Roman", 23, "bold"),
-    bg="#343534"
-)
-
-title.pack(pady=32)
-
-
-selected_template = tk.StringVar(master=window)
-selected_template.set("Quarter Accounting")
-
-def template_changed(*args):
-    if selected_template.get() == "2D Kinematics Calculator":
-        open_planet_selector()
-
-selected_template.trace_add("write", template_changed)
-
-template_label = tk.Label(
-    window,
-    text="Select Spreadsheet Template:",
-    font=("Times New Roman", 12),
-    bg="#343534"
-)
-
-template_label.pack(pady=(8, 4))
-
-
-template_menu = tk.OptionMenu(
-    window,
-    selected_template,
-    *template_options
-)
-
-template_menu.config(
-    font=("Times New Roman", 11),
-    width=25
-)
-
-template_menu.pack(pady=5)
-
-
-instructions = tk.Label(
-    window,
-    text="Input New Data Here:",
-    font=("Times New Roman", 15),
-    bg="#343534"
-)
-
-instructions.pack()
-
-
-entry = tk.Entry(
-    window,
-    width=43,
-    font=("Courier New", 12),
-    bg="#F8F6F0",
-    fg="black",
-    highlightbackground="#808080",
-    highlightcolor="#808080",    
-)
-
-entry.pack(pady=5)
-entry.focus_set()
-
-clear_button = rounded_button(
-    window,
-    text="Clear",
-    command=lambda: entry.delete(0, tk.END),
-    bg="black",
-    fg="white",
-    font=("Times New Roman", 13),
-    width=70,
-    height=25,
-    corner_radius=12,
-)
-
-clear_button.place(relx=0.99, rely=0.31, anchor="ne")
-
-
-submit_button = rounded_button(
-    window,
-    text="Enter Data",
-    font=("Times New Roman", 14, "bold"),
-    bg="#FFD700",
-    fg="black",
-    command=add_transaction,
-    height=30,
-    width=120,
-    corner_radius=12
-)
-
-submit_button.pack(pady=3)
-
-
-# -------------------------
-# SPREADSHEET SEARCH
-# -------------------------
-
-search_label = tk.Label(
-    window,
-    text="Search Existing Spreadsheets:",
-    font=("Times New Roman", 11),
-    bg="#343534"
-)
-
-search_label.pack(pady=(15, 5))
-
-clear_button = rounded_button(
-    window,
-    text="Clear",
-    command=lambda: search_entry.delete(0, tk.END),
-    bg="black",
-    fg="white",
-    font=("Times New Roman", 13),
-    width=70,
-    height=25,
-    corner_radius=12,
-)
-
-clear_button.place(relx=0.96, rely=0.48, anchor="ne")
-
-
-search_entry = tk.Entry(
-    window,
-    width=40,
-    font=("Courier New", 12),
-    bg="#F8F6F0",
-    fg="black",
-    highlightbackground="#808080",
-    highlightcolor="#808080",    
-)
-
-search_entry.pack(pady=3)
-
-search_entry.bind(
-    "<KeyRelease>",
-    search_spreadsheets
-)
-
-
-spreadsheet_list = tk.Listbox(
-    window,
-    width=35,
-    height=3,
-    font=("Courier New", 12),
-    bg="#429BDD",
-    fg="black"
-)
-
-spreadsheet_list.pack(pady=2)
-
-
-select_button = rounded_button(
-    window,
-    text="Select Spreadsheet",
-    font=("Times New Roman", 11),
-    bg="white",
-    fg="black",
-    command=select_spreadsheet,
-    height=28,
-    width=135,
-    corner_radius=12
-)
-
-select_button.pack(pady=2)
-
-delete_button = rounded_button(
-    window,
-    text="Delete Spreadsheet",
-    font=("Times New Roman", 11),
-    bg="#B71C1C",
-    fg="white",
-    command=delete_spreadsheet,
-    height=28,
-    width=135,
-    corner_radius=12
-)
-
-delete_button.pack(pady=7)
-
-# -------------------------
-# NEW SPREADSHEET
-# -------------------------
-
-status_label = tk.Label(
-    window,
-    text=f"Current spreadsheet: {current_file}",
-    font=("Times New Roman", 11),
-    bg="#343534"
-)
-
-status_label.pack(pady=7)
-
-clear_button = rounded_button(
-    window,
-    text="Clear",
-    command=lambda: new_file_entry.delete(0, tk.END),
-    bg="black",
-    fg="white",
-    font=("Times New Roman", 13),
-    width=70,
-    height=25,
-    corner_radius=12,
-)
-
-clear_button.place(relx=0.96, rely=0.79, anchor="ne")
-
-
-new_file_entry = tk.Entry(
-    window,
-    width=40,
-    font=("Courier New", 12),
-    bg="#F8F6F0",
-    fg="black",
-    highlightbackground="#808080",
-    highlightcolor="#808080",    
-)
-
-new_file_entry.pack(pady=5)
-
-
-new_file_button = rounded_button(
-    window,
-    text="Create New Spreadsheet",
-    font=("Courier New", 12),
-    command=create_new_spreadsheet,
-    width=230,
-    height=30,
-    corner_radius=13
-)
-
-new_file_button.pack(pady=5)
-
-# -------------------------
-# FOOTER
-# -------------------------
-
-footer = tk.Label(
-    window,
-    text="Powered by DeBeaul Tech and Solutions",
-    font=("Times New Roman", 10),
-    bg="#343534"
-)
-
-footer.pack(pady=5)
-
-footer = tk.Label(
-    window,
-    text="Version 14.04",
-    font=("Arial", 8),
-    bg="#343534"
-)
-
-footer.pack(pady=0)
-
-footer = tk.Label(
-    window,
-    text="[Beta] Base Edition",
-    font=("Arial", 9),
-    bg="#343534"
-)
-
-footer.pack(pady=0)
-
-# Load spreadsheets when Phillip starts
-refresh_spreadsheet_list()
-
-if __name__ == "__main__":
-    window.mainloop()
+if tk is not None:
+    window = tk.Tk()
+
+    window.title("Phillip Accounting")
+    window.geometry("610x687")
+    window.configure(bg="#343534")
+    window.resizable(False,False)
+    window.pack_propagate(False)
+    window.grid_propagate(False)
+
+    search_button = rounded_button(
+        window,
+        text="Search Transactions",
+        font=("Times New Roman", 11),
+        bg="#656764",
+        fg="white",
+        command=open_search_window,
+        height=25,
+        width=140,
+        corner_radius=12
+    )
+
+    search_button.place(relx=0.24, rely=0.01, anchor="ne")
+
+    help_button = tk.Canvas(
+        window,
+        width=32,
+        height=32,
+        bg="#343534",
+        highlightthickness=0
+    )
+
+    help_button.place(relx=0.98, rely=0.01, anchor="ne")
+
+    help_button.create_oval(
+        2,
+        2,
+        30,
+        30,
+        fill="#0066CC",
+        outline="#87CEEB",
+        width=2
+    )
+
+    help_button.create_text(
+        16,
+        16,
+        text="?",
+        font=("Times New Roman", 17),
+        fill="white"
+    )
+
+    help_button.bind(
+        "<Button-1>",
+        lambda event: show_help()
+    )
+
+    title = tk.Label(
+        window,
+        text="PHILLIP ACCOUNTING",
+        font=("Times New Roman", 23, "bold"),
+        bg="#343534"
+    )
+
+    title.pack(pady=32)
+
+
+    selected_template = tk.StringVar(master=window)
+    selected_template.set("Quarter Accounting")
+
+    def template_changed(*args):
+        if selected_template.get() == "2D Kinematics Calculator":
+            open_planet_selector()
+
+    selected_template.trace_add("write", template_changed)
+
+    template_label = tk.Label(
+        window,
+        text="Select Spreadsheet Template:",
+        font=("Times New Roman", 12),
+        bg="#343534"
+    )
+
+    template_label.pack(pady=(8, 4))
+
+
+    template_menu = tk.OptionMenu(
+        window,
+        selected_template,
+        *template_options
+    )
+
+    template_menu.config(
+        font=("Times New Roman", 11),
+        width=25
+    )
+
+    template_menu.pack(pady=5)
+
+
+    instructions = tk.Label(
+        window,
+        text="Input New Data Here:",
+        font=("Times New Roman", 15),
+        bg="#343534"
+    )
+
+    instructions.pack()
+
+
+    entry = tk.Entry(
+        window,
+        width=43,
+        font=("Courier New", 12),
+        bg="#F8F6F0",
+        fg="black",
+        highlightbackground="#808080",
+        highlightcolor="#808080",    
+    )
+
+    entry.pack(pady=5)
+    entry.focus_set()
+
+    clear_button = rounded_button(
+        window,
+        text="Clear",
+        command=lambda: entry.delete(0, tk.END),
+        bg="black",
+        fg="white",
+        font=("Times New Roman", 13),
+        width=70,
+        height=25,
+        corner_radius=12,
+    )
+
+    clear_button.place(relx=0.99, rely=0.31, anchor="ne")
+
+
+    submit_button = rounded_button(
+        window,
+        text="Enter Data",
+        font=("Times New Roman", 14, "bold"),
+        bg="#FFD700",
+        fg="black",
+        command=add_transaction,
+        height=30,
+        width=120,
+        corner_radius=12
+    )
+
+    submit_button.pack(pady=3)
+
+
+    # -------------------------
+    # SPREADSHEET SEARCH
+    # -------------------------
+
+    search_label = tk.Label(
+        window,
+        text="Search Existing Spreadsheets:",
+        font=("Times New Roman", 11),
+        bg="#343534"
+    )
+
+    search_label.pack(pady=(15, 5))
+
+    clear_button = rounded_button(
+        window,
+        text="Clear",
+        command=lambda: search_entry.delete(0, tk.END),
+        bg="black",
+        fg="white",
+        font=("Times New Roman", 13),
+        width=70,
+        height=25,
+        corner_radius=12,
+    )
+
+    clear_button.place(relx=0.96, rely=0.48, anchor="ne")
+
+
+    search_entry = tk.Entry(
+        window,
+        width=40,
+        font=("Courier New", 12),
+        bg="#F8F6F0",
+        fg="black",
+        highlightbackground="#808080",
+        highlightcolor="#808080",    
+    )
+
+    search_entry.pack(pady=3)
+
+    search_entry.bind(
+        "<KeyRelease>",
+        search_spreadsheets
+    )
+
+
+    spreadsheet_list = tk.Listbox(
+        window,
+        width=35,
+        height=3,
+        font=("Courier New", 12),
+        bg="#429BDD",
+        fg="black"
+    )
+
+    spreadsheet_list.pack(pady=2)
+
+
+    select_button = rounded_button(
+        window,
+        text="Select Spreadsheet",
+        font=("Times New Roman", 11),
+        bg="white",
+        fg="black",
+        command=select_spreadsheet,
+        height=28,
+        width=135,
+        corner_radius=12
+    )
+
+    select_button.pack(pady=2)
+
+    delete_button = rounded_button(
+        window,
+        text="Delete Spreadsheet",
+        font=("Times New Roman", 11),
+        bg="#B71C1C",
+        fg="white",
+        command=delete_spreadsheet,
+        height=28,
+        width=135,
+        corner_radius=12
+    )
+
+    delete_button.pack(pady=7)
+
+    # -------------------------
+    # NEW SPREADSHEET
+    # -------------------------
+
+    status_label = tk.Label(
+        window,
+        text=f"Current spreadsheet: {current_file}",
+        font=("Times New Roman", 11),
+        bg="#343534"
+    )
+
+    status_label.pack(pady=7)
+
+    clear_button = rounded_button(
+        window,
+        text="Clear",
+        command=lambda: new_file_entry.delete(0, tk.END),
+        bg="black",
+        fg="white",
+        font=("Times New Roman", 13),
+        width=70,
+        height=25,
+        corner_radius=12,
+    )
+
+    clear_button.place(relx=0.96, rely=0.79, anchor="ne")
+
+
+    new_file_entry = tk.Entry(
+        window,
+        width=40,
+        font=("Courier New", 12),
+        bg="#F8F6F0",
+        fg="black",
+        highlightbackground="#808080",
+        highlightcolor="#808080",    
+    )
+
+    new_file_entry.pack(pady=5)
+
+
+    new_file_button = rounded_button(
+        window,
+        text="Create New Spreadsheet",
+        font=("Courier New", 12),
+        command=create_new_spreadsheet,
+        width=230,
+        height=30,
+        corner_radius=13
+    )
+
+    new_file_button.pack(pady=5)
+
+    # -------------------------
+    # FOOTER
+    # -------------------------
+
+    footer = tk.Label(
+        window,
+        text="Powered by DeBeaul Tech and Solutions",
+        font=("Times New Roman", 10),
+        bg="#343534"
+    )
+
+    footer.pack(pady=5)
+
+    footer = tk.Label(
+        window,
+        text="Version 14.04",
+        font=("Arial", 8),
+        bg="#343534"
+    )
+
+    footer.pack(pady=0)
+
+    footer = tk.Label(
+        window,
+        text="[Beta] Base Edition",
+        font=("Arial", 9),
+        bg="#343534"
+    )
+
+    footer.pack(pady=0)
+
+    # Load spreadsheets when Phillip starts
+    refresh_spreadsheet_list()
+
+    if __name__ == "__main__":
+        window.mainloop()
