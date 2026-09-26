@@ -1,226 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phillip Accounting</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phillip Accounting</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .box {
+      max-width: 650px;
+      padding: 48px 28px;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 19px;
+      line-height: 1.5;
+      color: #555;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 16px 30px;
+      background: #0071e3;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .note {
+      margin-top: 35px;
+      padding: 20px;
+      background: white;
+      border-radius: 14px;
+      text-align: left;
+      font-size: 15px;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="box">
+    <h1>Phillip Accounting</h1>
+    <p>
+      Your AI-powered accounting assistant for Mac.
+      Phillip runs locally on your computer and works with your local accounting files.
+    </p>
 
-    <button id="searchTransactionsButton">
-        Search Transactions
-    </button>
+    <a class="button"
+       href="https://drive.google.com/uc?export=download&id=1YkW4ZrQmDPy5UbGK1e0BXVPlk5PiZIJB">
+      Download Phillip for Mac
+    </a>
 
-    <button id="helpButton">?</button>
-
-    <main class="app">
-
-        <header>
-            <h1>PHILLIP ACCOUNTING</h1>
-            <p>[Beta] Base Edition</p>
-        </header>
-
-        <section class="accounting-section">
-
-            <h2>Enter Accounting Information</h2>
-
-            <label for="templateSelect">
-                Spreadsheet Template
-            </label>
-
-            <select id="templateSelect"></select>
-
-            <div class="data-row">
-                <input
-                    type="text"
-                    id="dataInput"
-                    placeholder="Example: I bought office supplies for $25"
-                >
-
-                <button id="clearData">
-                    Clear
-                </button>
-            </div>
-
-            <button id="enterData">
-                Enter Data
-            </button>
-
-            <div id="response"></div>
-
-        </section>
-
-        <section class="spreadsheet-section">
-
-            <h2>Spreadsheets</h2>
-
-            <div class="data-row">
-                <input
-                    type="text"
-                    id="spreadsheetSearch"
-                    placeholder="Search spreadsheets..."
-                >
-
-                <button id="clearSpreadsheetSearch">
-                    Clear
-                </button>
-            </div>
-
-            <ul id="spreadsheetList"></ul>
-
-            <button id="selectSpreadsheet">
-                Select Spreadsheet
-            </button>
-
-            <button id="deleteSpreadsheet">
-                Delete Spreadsheet
-            </button>
-
-            <p id="currentSpreadsheet">
-                Current spreadsheet: Welcome.xlsx
-            </p>
-
-            <div class="data-row">
-                <input
-                    type="text"
-                    id="newSpreadsheetName"
-                >
-
-                <button id="clearNewSpreadsheet">
-                    Clear
-                </button>
-            </div>
-
-            <button id="createSpreadsheet">
-                Create New Spreadsheet
-            </button>
-
-        </section>
-
-<section class="kinematics-section">
-
-    <h2>2D Kinematics Calculator</h2>
-
-    <input
-        type="number"
-        id="initialHeight2D"
-        placeholder="Initial Height (m)"
-    >
-
-    <input
-        type="number"
-        id="initialPosition2D"
-        placeholder="Initial Position (m)"
-    >
-
-    <input
-        type="number"
-        id="initialVelocity2D"
-        placeholder="Initial Velocity (m/s)"
-    >
-
-    <input
-        type="number"
-        id="angle2D"
-        placeholder="Angle (degrees)"
-    >
-
-    <select id="planet2D">
-        <option value="Earth">Earth</option>
-        <option value="Moon">Moon</option>
-        <option value="Mars">Mars</option>
-        <option value="Jupiter">Jupiter</option>
-        <option value="Mercury">Mercury</option>
-        <option value="Venus">Venus</option>
-        <option value="Saturn">Saturn</option>
-        <option value="Uranus">Uranus</option>
-        <option value="Neptune">Neptune</option>
-        <option value="Pluto">Pluto</option>
-    </select>
-
-    <button id="calculate2D">
-        Calculate 2D Kinematics
-    </button>
-
-    <div id="kinematicsResult2D"></div>
-
-</section>
-
-<section class="kinematics-section">
-
-    <h2>1D Kinematics Calculator</h2>
-
-    <input
-        type="number"
-        id="initialPosition"
-        placeholder="Initial Position (m)"
-    >
-
-    <input
-        type="number"
-        id="endPosition"
-        placeholder="End Position (m)"
-    >
-
-    <input
-        type="number"
-        id="initialVelocity"
-        placeholder="Initial Velocity (m/s)"
-    >
-
-    <input
-        type="number"
-        id="endVelocity"
-        placeholder="End Velocity (m/s)"
-    >
-
-    <input
-        type="number"
-        id="acceleration"
-        placeholder="Acceleration (m/s²)"
-    >
-
-    <input
-        type="number"
-        id="time"
-        placeholder="Time (s)"
-    >
-
-    <button id="calculate1D">
-        Calculate 1D Kinematics
-    </button>
-
-    <div id="kinematicsResult"></div>
-
-</section>
-
-        <section class="transaction-section">
-
-            <h2>Transactions</h2>
-
-            <button id="openTransactionSearch">
-                Search Transactions
-            </button>
-
-            <p id="transactionCount">
-                0 transactions found
-            </p>
-
-            <ul id="transactionList"></ul>
-
-        </section>
-
-        <footer>
-            <p>Powered by DeBeaul Tech and Solutions</p>
-            <p>Version 14.04</p>
-            <p>[Beta] Base Edition</p>
-        </footer>
-
-    </main>
-
-    <script src="app.js?v=2" defer></script>
-
+    <div class="note">
+      <strong>macOS security notice</strong><br><br>
+      Because Phillip is not Apple-notarized, macOS may show a warning when you first open it.
+      If that happens, open
+      <strong>System Settings → Privacy & Security</strong>,
+      find the message about Phillip being blocked, and click
+      <strong>Open Anyway</strong>.
+      Then confirm <strong>Open</strong>.
+    </div>
+  </div>
 </body>
 </html>
